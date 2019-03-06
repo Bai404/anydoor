@@ -2,8 +2,9 @@
 * @Author: Marte
 * @Date:   2019-03-05 11:20:29
 * @Last Modified by:   Marte
-* @Last Modified time: 2019-03-05 17:52:59
+* @Last Modified time: 2019-03-05 17:58:09
 */
+const path = require('path');
 const mimeTypes = {
     'hqx':'application/mac-binhex40',
     'cpt':'application/mac-compactpro',
@@ -102,4 +103,11 @@ module.exports = (filePath) => {
     let ext = path.extname(filePath)
       .split('.')
       .pop()
+      .toLowerCase();
+
+    if(!ext){
+        ext = filePath ;
+    }
+
+    return mimeTypes[ext] || mimeTypes['txt']
 }
